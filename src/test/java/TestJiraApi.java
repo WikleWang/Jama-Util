@@ -59,22 +59,20 @@ public class TestJiraApi {
     @Test
     public void testCreateIssues() {
         IssueRestClient issueClient = restClient.getIssueClient();
-        IssueInputBuilder issueBuilder = new IssueInputBuilder("JRA",10001L);
-        issueBuilder.setFieldValue("summary","Test create bulk issue one by java rest api");
 
         IssueInputBuilder issueBuilder2 = new IssueInputBuilder("JRA",10001L);
         issueBuilder2.setFieldValue("summary","Test create bulk issue two by java rest api ");
 
-        BulkIssueInput issues = new BulkIssueInput(Arrays.asList(issueBuilder.build(),issueBuilder2.build()));
-        BulkIssues bulkIssue = issueClient.createIssues(issues, progressMonitor);
-        logger.info(bulkIssue);
+
+        BasicIssue issue = issueClient.createIssue(issueBuilder2.build(), progressMonitor);
+        logger.info(issue);
     }
 
     @Test
     public void testGetCreateMetaData() {
 
-        List<Field> fields = restClient.getFieldRestField().getFields(progressMonitor);
-        System.out.println(fields);
+        //List<Field> fields = restClient.getFieldRestField().getFields(progressMonitor);
+        //System.out.println(fields);
         IssueRestClient issueClient = restClient.getIssueClient();
         Iterable<CimProject> createIssueMetadata = issueClient.getCreateIssueMetadata(null, progressMonitor);
 

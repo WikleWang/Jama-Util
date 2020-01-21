@@ -30,6 +30,4 @@ public interface JiraRestClient {
     ProjectRolesRestClient getProjectRolesRestClient();
 
     ApacheHttpClient getTransportClient();
-
-    FieldRestClient getFieldRestField();
 }
